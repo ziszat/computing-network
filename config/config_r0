@@ -1,0 +1,15 @@
+set interface state GigabitEthernet0/8/0 up
+set interface state GigabitEthernet0/9/0 up
+set interface state GigabitEthernet0/a/0 up
+set interface ip address GigabitEthernet0/8/0 10.0.114.1/24
+set interface ip address GigabitEthernet0/9/0 2001:b::1/64
+set interface ip address GigabitEthernet0/a/0 2001:10::1/64
+loopback create-interface
+set interface ip address loop0 fc00:f::f/64
+set interface state loop0 up
+ip route add fc00:1::/64 via 2001:10::2
+sr localsid address fc00:f::a behavior end.dx4 GigabitEthernet0/8/0 10.0.114.2
+sr policy add bsid fe00::1b next fc00:1::a next fc00:33::a encap
+sr steer l3 10.0.0.0/24 via bsid fe00::1b
+sr policy add bsid fe00::2b next fc00:1::a next fc00:2::a next fc00:4::a next fc00:6::a encap
+sr steer l3 10.0.1.0/24 via bsid fe00::2b

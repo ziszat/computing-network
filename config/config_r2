@@ -1,0 +1,13 @@
+set interface state GigabitEthernet0/8/0 up
+set interface state GigabitEthernet0/9/0 up
+set interface state GigabitEthernet0/a/0 up
+set interface ip address GigabitEthernet0/8/0 2001:12::2/64
+set interface ip address GigabitEthernet0/9/0 2001:24::1/64
+set interface ip address GigabitEthernet0/a/0 2001:25::1/64
+loopback create-interface
+set interface ip address loop0 fc00:2::2/64
+set interface state loop0 up
+ip route add fc00:1::/64 via 2001:12::1
+ip route add fc00:4::/64 via 2001:24::2
+ip route add fc00:5::/64 via 2001:25::2
+sr localsid address fc00:2::a behavior end

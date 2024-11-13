@@ -1,0 +1,17 @@
+{
+    "r0": {
+        "port": 2208,
+        "username": "root",
+        "password": "123"
+    },
+    "r3": {
+        "port": 2203,
+        "username": "root",
+        "password": "123"
+    },
+    "r6": {
+        "port": 2209,
+        "username": "root",
+        "password": "123"
+    }
+}
